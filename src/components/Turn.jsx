@@ -4,12 +4,26 @@ import { useGame } from "../context/GameProvider"
 
 export const Turn = () => {
 
-    const { turn } = useGame()
+    const { turn, error } = useGame()
 
     return (
-        <section className='turn'>
-            <Square isSelected={turn === TURNS.X}> {TURNS.X} </Square>
-            <Square isSelected={turn === TURNS.O}> {TURNS.O} </Square>
-        </section>
+        <div>
+            <section className='turn'>
+                <Square isSelected={turn === TURNS.X}> {TURNS.X} </Square>
+                <Square isSelected={turn === TURNS.O}> {TURNS.O} </Square>
+            </section>
+            {error &&
+                <div style={{ 
+                    display: 'block', 
+                    alignItems: 'center', 
+                    textAlign: 'center', 
+                    justifyContent: 'center', 
+                    fontSize: '32px' 
+                    }}
+                >
+                   <p style={{ color: 'red' }}> {error} </p>  
+                </div>
+            }   
+        </div>
     )
 }

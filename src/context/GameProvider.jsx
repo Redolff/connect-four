@@ -9,12 +9,14 @@ export const GameProvider = ({ children }) => {
     const [board, setBoard] = useState(Array(16).fill(null))
     const [turn, setTurn] = useState(TURNS.X)
     const [winner, setWinner] = useState(null)
+    const [error, setError] = useState(null)
     const [data, setData] = useState([])
 
     const resetGame = () => {
         setBoard(Array(16).fill(null))
         setTurn(TURNS.X)
         setWinner(null)
+        setError(null)
     }
 
     useEffect(() => {
@@ -32,7 +34,7 @@ export const GameProvider = ({ children }) => {
     }, [])
 
     return (
-        <GameContext.Provider value={{ board, setBoard, turn, setTurn, winner, setWinner, resetGame, data }}>
+        <GameContext.Provider value={{ board, setBoard, turn, setTurn, winner, setWinner, error, setError, resetGame, data }}>
             {children}
         </GameContext.Provider>
     )

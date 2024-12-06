@@ -7,13 +7,15 @@ export const Game = () => {
 
     const { board,setBoard,
             turn, setTurn,
-            winner, setWinner 
+            winner, setWinner, 
+            error, setError,
         } = useGame()
 
     const updateBoard = (index) => {
 
         // No pisar una celda en la cual ya tenemos un valor o hay un ganador
         if(board[index] || winner){
+            setError(`La celda ya tiene el valor ${board[index]}`)
             return
         }
         //Actualizar tablero
@@ -32,6 +34,7 @@ export const Game = () => {
         }else if(checkGameIsOver(newBoard)){
             setWinner(false)
         }
+        setError(null)
     }
 
     return (
